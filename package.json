@@ -1,0 +1,12 @@
+{
+  "name": "com.kaoh.kaisaimodbus",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {},
+  "dependencies": {
+    "modbus-stream": "^0.46.0"
+  },
+  "devDependencies": {
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12"
+  }
+}

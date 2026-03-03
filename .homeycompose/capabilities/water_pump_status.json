@@ -1,0 +1,24 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Water Pump",
+    "nl": "Waterpomp"
+  },
+  "desc": {
+    "en": "Water pump running status",
+    "nl": "Waterpomp draait status"
+  },
+  "icon": "/assets/water_pump.svg",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "insightsTitleTrue": {
+    "en": "Water pump running",
+    "nl": "Waterpomp draait"
+  },
+  "insightsTitleFalse": {
+    "en": "Water pump stopped",
+    "nl": "Waterpomp gestopt"
+  }
+}

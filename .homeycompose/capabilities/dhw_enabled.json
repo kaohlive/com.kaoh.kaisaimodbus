@@ -1,0 +1,38 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Domestic Hot Water",
+    "nl": "Warm tapwater"
+  },
+  "desc": {
+    "en": "Enable or disable domestic hot water heating",
+    "nl": "Warm tapwater verwarming in- of uitschakelen"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "toggle",
+  "uiQuickAction": true,
+  "insights": true,
+  "insightsTitleTrue": {
+    "en": "DHW enabled",
+    "nl": "Warm tapwater ingeschakeld"
+  },
+  "insightsTitleFalse": {
+    "en": "DHW disabled",
+    "nl": "Warm tapwater uitgeschakeld"
+  },
+  "options": {
+    "showTitle": true,
+    "showValue": true,
+    "label": {
+      "true": {
+        "en": "On",
+        "nl": "Aan"
+      },
+      "false": {
+        "en": "Off",
+        "nl": "Uit"
+      }
+    }
+  }
+}

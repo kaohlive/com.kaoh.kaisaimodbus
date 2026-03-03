@@ -1,0 +1,33 @@
+{
+  "id": "com.kaoh.kaisaimodbus",
+  "version": "1.0.0",
+  "compatibility": ">=12.4.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Kaisai Modbus AWHP"
+  },
+  "description": {
+    "en": "Control your Kaisai AWHP using local Modbus protocol."
+  },
+  "brandColor": "#00529B",
+  "category": [
+    "appliances"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "source": "https://github.com/kaohlive/com.kaoh.kaisaimodbus",
+  "bugs": {
+    "url": "https://github.com/kaohlive/com.kaoh.kaisaimodbus/issues"
+  },
+  "author": {
+    "name": "Vincent Boer",
+    "email": "vincent@vdboer.nl"
+  }
+}

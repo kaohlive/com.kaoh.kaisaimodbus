@@ -1,0 +1,306 @@
+{
+  "name": {
+    "en": "Kaisai AWHP",
+    "nl": "Kaisai AWHP"
+  },
+  "class": "thermostat",
+  "images": {
+    "large": "/drivers/kaisai-awhp/assets/images/large.png",
+    "small": "/drivers/kaisai-awhp/assets/images/small.png",
+    "xlarge": "/drivers/kaisai-awhp/assets/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "configure"
+    }
+  ],
+  "capabilities": [
+    "onoff",
+    "target_temperature",
+    "thermostat_mode",
+    "measure_temperature",
+    "measure_temperature.water_outlet",
+    "measure_temperature.water_inlet",
+    "measure_temperature.outdoor",
+    "measure_temperature.dhw",
+    "measure_temperature.backup_heater",
+    "measure_temperature.room",
+    "target_temperature.dhw",
+    "dhw_enabled",
+    "silent_mode",
+    "odu_cycle",
+    "measure_power",
+    "meter_power",
+    "measure_power.heat",
+    "meter_power.heat",
+    "measure_cop",
+    "measure_water",
+    "alarm_generic",
+    "error_code",
+    "compressor_status",
+    "defrosting_status",
+    "water_pump_status",
+    "dhw_heating_status"
+  ],
+  "capabilitiesOptions": {
+    "onoff": {
+      "title": {
+        "en": "Heating/Cooling",
+        "nl": "Verwarming/Koeling"
+      },
+      "greyout": true
+    },
+    "thermostat_mode": {
+      "title": {
+        "en": "Operation Mode",
+        "nl": "Bedrijfsmodus"
+      },
+      "values": [
+        { "id": "cool", "title": { "en": "Cool", "nl": "Koelen" } },
+        { "id": "heat", "title": { "en": "Heat", "nl": "Verwarmen" } },
+        { "id": "auto", "title": { "en": "Auto", "nl": "Automatisch" } }
+      ]
+    },
+    "target_temperature": {
+      "title": {
+        "en": "Target Temperature",
+        "nl": "Streeftemperatuur"
+      },
+      "min": 5,
+      "max": 70,
+      "step": 1
+    },
+    "target_temperature.dhw": {
+      "title": {
+        "en": "DHW Target Temperature",
+        "nl": "Tapwater streeftemperatuur"
+      },
+      "min": 20,
+      "max": 75,
+      "step": 1
+    },
+    "measure_temperature": {
+      "title": {
+        "en": "Current Temperature",
+        "nl": "Huidige temperatuur"
+      }
+    },
+    "measure_temperature.water_outlet": {
+      "title": {
+        "en": "Water Outlet Temperature",
+        "nl": "Wateruitlaat temperatuur"
+      }
+    },
+    "measure_temperature.water_inlet": {
+      "title": {
+        "en": "Water Inlet Temperature",
+        "nl": "Waterinlaat temperatuur"
+      }
+    },
+    "measure_temperature.outdoor": {
+      "title": {
+        "en": "Outdoor Temperature",
+        "nl": "Buitentemperatuur"
+      }
+    },
+    "measure_temperature.dhw": {
+      "title": {
+        "en": "DHW Tank Temperature",
+        "nl": "Tapwater tank temperatuur"
+      }
+    },
+    "measure_temperature.backup_heater": {
+      "title": {
+        "en": "Backup Heater Outlet Temperature",
+        "nl": "Backup verwarmer uitlaat temperatuur"
+      }
+    },
+    "measure_temperature.room": {
+      "title": {
+        "en": "Room Temperature",
+        "nl": "Kamertemperatuur"
+      }
+    },
+    "measure_power": {
+      "title": {
+        "en": "Electrical Power",
+        "nl": "Elektrisch vermogen"
+      },
+      "decimals": 0
+    },
+    "meter_power": {
+      "title": {
+        "en": "Total Energy Used",
+        "nl": "Totaal energieverbruik"
+      }
+    },
+    "measure_power.heat": {
+      "title": {
+        "en": "Thermal Output",
+        "nl": "Thermisch vermogen"
+      },
+      "decimals": 0
+    },
+    "meter_power.heat": {
+      "title": {
+        "en": "Thermal Energy Produced",
+        "nl": "Geproduceerde warmte-energie"
+      }
+    },
+    "measure_water": {
+      "title": {
+        "en": "Water Flow Rate",
+        "nl": "Waterdebiet"
+      },
+      "decimals": 1
+    }
+  },
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Connection Settings",
+        "nl": "Verbindingsinstellingen"
+      },
+      "children": [
+        {
+          "id": "ip",
+          "type": "text",
+          "label": {
+            "en": "IP Address",
+            "nl": "IP Adres"
+          },
+          "value": "192.168.1.100",
+          "hint": {
+            "en": "IP address of the Modbus TCP gateway (e.g. Elfin EW-11) connected to the H1/H2 port",
+            "nl": "IP adres van de Modbus TCP gateway (bijv. Elfin EW-11) aangesloten op de H1/H2 poort"
+          }
+        },
+        {
+          "id": "port",
+          "type": "number",
+          "label": {
+            "en": "Port",
+            "nl": "Poort"
+          },
+          "value": 502,
+          "min": 1,
+          "max": 65535
+        },
+        {
+          "id": "slave_id",
+          "type": "number",
+          "label": {
+            "en": "Slave ID",
+            "nl": "Slave ID"
+          },
+          "value": 1,
+          "min": 1,
+          "max": 247,
+          "hint": {
+            "en": "Modbus address matching the DIP switch setting on the hydraulic module",
+            "nl": "Modbus adres overeenkomend met de DIP switch instelling op de hydraulische module"
+          }
+        },
+        {
+          "id": "poll_interval",
+          "type": "number",
+          "label": {
+            "en": "Poll Interval (seconds)",
+            "nl": "Poll Interval (seconden)"
+          },
+          "value": 60,
+          "min": 30,
+          "max": 300,
+          "hint": {
+            "en": "Interval between Modbus polls in seconds.",
+            "nl": "Interval tussen Modbus polls in seconden."
+          }
+        },
+        {
+          "id": "connection_timeout",
+          "type": "number",
+          "label": {
+            "en": "Connection Timeout (ms)",
+            "nl": "Verbindingstimeout (ms)"
+          },
+          "hint": {
+            "en": "Timeout for Modbus read/write operations",
+            "nl": "Timeout voor Modbus lees/schrijf operaties"
+          },
+          "value": 5000,
+          "min": 1000,
+          "max": 30000
+        },
+        {
+          "id": "max_consecutive_errors",
+          "type": "number",
+          "label": {
+            "en": "Max Errors Before Unavailable",
+            "nl": "Max Fouten Voor Onbeschikbaar"
+          },
+          "hint": {
+            "en": "Number of consecutive polling errors before marking device unavailable",
+            "nl": "Aantal opeenvolgende polling fouten voordat apparaat onbeschikbaar wordt gemarkeerd"
+          },
+          "value": 3,
+          "min": 1,
+          "max": 10
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Features",
+        "nl": "Functies"
+      },
+      "children": [
+        {
+          "id": "dhw_installed",
+          "type": "checkbox",
+          "label": {
+            "en": "DHW (Domestic Hot Water) Installed",
+            "nl": "Tapwarmwater (DHW) ge\u00efnstalleerd"
+          },
+          "hint": {
+            "en": "Disable this if your setup does not have a DHW tank. This hides DHW-related controls and sensors from the device.",
+            "nl": "Schakel dit uit als uw installatie geen tapwarmwatertank heeft. Dit verbergt DHW-gerelateerde bediening en sensoren."
+          },
+          "value": true
+        },
+        {
+          "id": "backup_heater_installed",
+          "type": "checkbox",
+          "label": {
+            "en": "Backup Heater Installed",
+            "nl": "Backup verwarmer ge\u00efnstalleerd"
+          },
+          "hint": {
+            "en": "Disable this if your setup does not have a backup heater (IBH/TBH). This hides the backup heater temperature sensor.",
+            "nl": "Schakel dit uit als uw installatie geen backup verwarmer (IBH/TBH) heeft. Dit verbergt de backup verwarmer temperatuursensor."
+          },
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Heat Pump Info",
+        "nl": "Warmtepomp Info"
+      },
+      "children": [
+        {
+          "id": "appliance_type",
+          "type": "label",
+          "label": {
+            "en": "Appliance Type",
+            "nl": "Apparaat Type"
+          },
+          "value": "unknown"
+        }
+      ]
+    }
+  ]
+}

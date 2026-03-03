@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "COP",
+    "nl": "COP"
+  },
+  "desc": {
+    "en": "Coefficient of Performance (thermal output / electrical input)",
+    "nl": "Co\u00ebffici\u00ebnt van Prestatie (thermisch vermogen / elektrisch vermogen)"
+  },
+  "icon": "/assets/cop.svg",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "units": {
+    "en": "",
+    "nl": ""
+  },
+  "decimals": 1,
+  "min": 0,
+  "max": 15
+}

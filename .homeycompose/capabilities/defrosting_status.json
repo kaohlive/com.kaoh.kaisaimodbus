@@ -1,0 +1,24 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Defrost",
+    "nl": "Ontdooien"
+  },
+  "desc": {
+    "en": "Defrosting status",
+    "nl": "Ontdooi status"
+  },
+  "icon": "/assets/defrost.svg",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "insightsTitleTrue": {
+    "en": "Defrosting active",
+    "nl": "Ontdooien actief"
+  },
+  "insightsTitleFalse": {
+    "en": "Defrosting inactive",
+    "nl": "Ontdooien inactief"
+  }
+}

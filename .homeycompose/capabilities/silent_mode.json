@@ -1,0 +1,38 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Silent Mode",
+    "nl": "Stille modus"
+  },
+  "desc": {
+    "en": "Enable or disable silent mode",
+    "nl": "Stille modus in- of uitschakelen"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "toggle",
+  "uiQuickAction": false,
+  "insights": true,
+  "insightsTitleTrue": {
+    "en": "Silent mode enabled",
+    "nl": "Stille modus ingeschakeld"
+  },
+  "insightsTitleFalse": {
+    "en": "Silent mode disabled",
+    "nl": "Stille modus uitgeschakeld"
+  },
+  "options": {
+    "showTitle": true,
+    "showValue": true,
+    "label": {
+      "true": {
+        "en": "Silent",
+        "nl": "Stil"
+      },
+      "false": {
+        "en": "Normal",
+        "nl": "Normaal"
+      }
+    }
+  }
+}

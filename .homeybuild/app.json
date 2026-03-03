@@ -1,0 +1,1022 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.kaoh.kaisaimodbus",
+  "version": "1.0.0",
+  "compatibility": ">=12.4.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Kaisai Modbus AWHP"
+  },
+  "description": {
+    "en": "Control your Kaisai AWHP using local Modbus protocol."
+  },
+  "brandColor": "#00529B",
+  "category": [
+    "appliances"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "source": "https://github.com/kaohlive/com.kaoh.kaisaimodbus",
+  "bugs": {
+    "url": "https://github.com/kaohlive/com.kaoh.kaisaimodbus/issues"
+  },
+  "author": {
+    "name": "Vincent Boer",
+    "email": "vincent@vdboer.nl"
+  },
+  "flow": {
+    "triggers": [
+      {
+        "id": "odu_cycle_changed",
+        "title": {
+          "en": "Outdoor unit status changed",
+          "nl": "Buitenunit status veranderd"
+        },
+        "tokens": [
+          {
+            "name": "cycle",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "error_detected",
+        "title": {
+          "en": "Error detected",
+          "nl": "Fout gedetecteerd"
+        },
+        "tokens": [
+          {
+            "name": "error_code",
+            "type": "number",
+            "title": {
+              "en": "Error Code",
+              "nl": "Foutcode"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "error_cleared",
+        "title": {
+          "en": "Error cleared",
+          "nl": "Fout opgelost"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "defrosting_started",
+        "title": {
+          "en": "Defrosting started",
+          "nl": "Ontdooien gestart"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "defrosting_stopped",
+        "title": {
+          "en": "Defrosting stopped",
+          "nl": "Ontdooien gestopt"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "compressor_started",
+        "title": {
+          "en": "Compressor started",
+          "nl": "Compressor gestart"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "compressor_stopped",
+        "title": {
+          "en": "Compressor stopped",
+          "nl": "Compressor gestopt"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "dhw_heating_started",
+        "title": {
+          "en": "DHW heating started",
+          "nl": "Tapwater verwarming gestart"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "dhw_heating_stopped",
+        "title": {
+          "en": "DHW heating stopped",
+          "nl": "Tapwater verwarming gestopt"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "odu_cycle_is",
+        "title": {
+          "en": "Outdoor unit status is",
+          "nl": "Buitenunit status is"
+        },
+        "titleFormatted": {
+          "en": "Outdoor unit status !{{is|is not}} [[cycle]]",
+          "nl": "Buitenunit status !{{is|is niet}} [[cycle]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          },
+          {
+            "name": "cycle",
+            "type": "dropdown",
+            "title": {
+              "en": "Status",
+              "nl": "Status"
+            },
+            "values": [
+              {
+                "id": "standby",
+                "label": {
+                  "en": "Standby",
+                  "nl": "Stand-by"
+                }
+              },
+              {
+                "id": "cooling",
+                "label": {
+                  "en": "Cooling",
+                  "nl": "Koelen"
+                }
+              },
+              {
+                "id": "heating",
+                "label": {
+                  "en": "Heating",
+                  "nl": "Verwarmen"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "is_heating",
+        "title": {
+          "en": "Heat pump is heating",
+          "nl": "Warmtepomp is aan het verwarmen"
+        },
+        "titleFormatted": {
+          "en": "Heat pump !{{is|is not}} heating",
+          "nl": "Warmtepomp !{{is|is niet}} aan het verwarmen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "is_cooling",
+        "title": {
+          "en": "Heat pump is cooling",
+          "nl": "Warmtepomp is aan het koelen"
+        },
+        "titleFormatted": {
+          "en": "Heat pump !{{is|is not}} cooling",
+          "nl": "Warmtepomp !{{is|is niet}} aan het koelen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "is_defrosting",
+        "title": {
+          "en": "Heat pump is defrosting",
+          "nl": "Warmtepomp is aan het ontdooien"
+        },
+        "titleFormatted": {
+          "en": "Heat pump !{{is|is not}} defrosting",
+          "nl": "Warmtepomp !{{is|is niet}} aan het ontdooien"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "compressor_is_on",
+        "title": {
+          "en": "Compressor is running",
+          "nl": "Compressor draait"
+        },
+        "titleFormatted": {
+          "en": "Compressor !{{is|is not}} running",
+          "nl": "Compressor !{{draait|draait niet}}"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "dhw_is_active",
+        "title": {
+          "en": "DHW heating is active",
+          "nl": "Tapwater verwarming is actief"
+        },
+        "titleFormatted": {
+          "en": "DHW heating !{{is|is not}} active",
+          "nl": "Tapwater verwarming !{{is|is niet}} actief"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "temperature_above",
+        "title": {
+          "en": "Water outlet temperature is above",
+          "nl": "Wateruitlaat temperatuur is boven"
+        },
+        "titleFormatted": {
+          "en": "Water outlet temperature !{{is above|is not above}} [[temperature]]°C",
+          "nl": "Wateruitlaat temperatuur !{{is boven|is niet boven}} [[temperature]]°C"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          },
+          {
+            "name": "temperature",
+            "type": "number",
+            "min": 5,
+            "max": 75,
+            "step": 0.5,
+            "title": {
+              "en": "Temperature (°C)",
+              "nl": "Temperatuur (°C)"
+            }
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "set_dhw_target_temperature",
+        "title": {
+          "en": "Set DHW target temperature",
+          "nl": "Tapwater streeftemperatuur instellen"
+        },
+        "titleFormatted": {
+          "en": "Set DHW target temperature to [[temperature]]°C",
+          "nl": "Tapwater streeftemperatuur instellen op [[temperature]]°C"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          },
+          {
+            "name": "temperature",
+            "type": "range",
+            "title": {
+              "en": "Temperature (°C)",
+              "nl": "Temperatuur (°C)"
+            },
+            "min": 20,
+            "max": 75,
+            "step": 1
+          }
+        ]
+      },
+      {
+        "id": "enable_dhw",
+        "title": {
+          "en": "Enable DHW",
+          "nl": "Warm tapwater inschakelen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "disable_dhw",
+        "title": {
+          "en": "Disable DHW",
+          "nl": "Warm tapwater uitschakelen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "enable_silent_mode",
+        "title": {
+          "en": "Enable silent mode",
+          "nl": "Stille modus inschakelen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      },
+      {
+        "id": "disable_silent_mode",
+        "title": {
+          "en": "Disable silent mode",
+          "nl": "Stille modus uitschakelen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=kaisai-awhp"
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Kaisai AWHP",
+        "nl": "Kaisai AWHP"
+      },
+      "class": "thermostat",
+      "images": {
+        "large": "/drivers/kaisai-awhp/assets/images/large.png",
+        "small": "/drivers/kaisai-awhp/assets/images/small.png",
+        "xlarge": "/drivers/kaisai-awhp/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "configure"
+        }
+      ],
+      "capabilities": [
+        "onoff",
+        "target_temperature",
+        "thermostat_mode",
+        "measure_temperature",
+        "measure_temperature.water_outlet",
+        "measure_temperature.water_inlet",
+        "measure_temperature.outdoor",
+        "measure_temperature.dhw",
+        "measure_temperature.backup_heater",
+        "measure_temperature.room",
+        "target_temperature.dhw",
+        "dhw_enabled",
+        "silent_mode",
+        "odu_cycle",
+        "measure_power",
+        "meter_power",
+        "measure_power.heat",
+        "meter_power.heat",
+        "measure_cop",
+        "measure_water",
+        "alarm_generic",
+        "error_code",
+        "compressor_status",
+        "defrosting_status",
+        "water_pump_status",
+        "dhw_heating_status"
+      ],
+      "capabilitiesOptions": {
+        "onoff": {
+          "title": {
+            "en": "Heating/Cooling",
+            "nl": "Verwarming/Koeling"
+          },
+          "greyout": true
+        },
+        "thermostat_mode": {
+          "title": {
+            "en": "Operation Mode",
+            "nl": "Bedrijfsmodus"
+          },
+          "values": [
+            {
+              "id": "cool",
+              "title": {
+                "en": "Cool",
+                "nl": "Koelen"
+              }
+            },
+            {
+              "id": "heat",
+              "title": {
+                "en": "Heat",
+                "nl": "Verwarmen"
+              }
+            },
+            {
+              "id": "auto",
+              "title": {
+                "en": "Auto",
+                "nl": "Automatisch"
+              }
+            }
+          ]
+        },
+        "target_temperature": {
+          "title": {
+            "en": "Target Temperature",
+            "nl": "Streeftemperatuur"
+          },
+          "min": 5,
+          "max": 70,
+          "step": 1
+        },
+        "target_temperature.dhw": {
+          "title": {
+            "en": "DHW Target Temperature",
+            "nl": "Tapwater streeftemperatuur"
+          },
+          "min": 20,
+          "max": 75,
+          "step": 1
+        },
+        "measure_temperature": {
+          "title": {
+            "en": "Current Temperature",
+            "nl": "Huidige temperatuur"
+          }
+        },
+        "measure_temperature.water_outlet": {
+          "title": {
+            "en": "Water Outlet Temperature",
+            "nl": "Wateruitlaat temperatuur"
+          }
+        },
+        "measure_temperature.water_inlet": {
+          "title": {
+            "en": "Water Inlet Temperature",
+            "nl": "Waterinlaat temperatuur"
+          }
+        },
+        "measure_temperature.outdoor": {
+          "title": {
+            "en": "Outdoor Temperature",
+            "nl": "Buitentemperatuur"
+          }
+        },
+        "measure_temperature.dhw": {
+          "title": {
+            "en": "DHW Tank Temperature",
+            "nl": "Tapwater tank temperatuur"
+          }
+        },
+        "measure_temperature.backup_heater": {
+          "title": {
+            "en": "Backup Heater Outlet Temperature",
+            "nl": "Backup verwarmer uitlaat temperatuur"
+          }
+        },
+        "measure_temperature.room": {
+          "title": {
+            "en": "Room Temperature",
+            "nl": "Kamertemperatuur"
+          }
+        },
+        "measure_power": {
+          "title": {
+            "en": "Electrical Power",
+            "nl": "Elektrisch vermogen"
+          },
+          "decimals": 0
+        },
+        "meter_power": {
+          "title": {
+            "en": "Total Energy Used",
+            "nl": "Totaal energieverbruik"
+          }
+        },
+        "measure_power.heat": {
+          "title": {
+            "en": "Thermal Output",
+            "nl": "Thermisch vermogen"
+          },
+          "decimals": 0
+        },
+        "meter_power.heat": {
+          "title": {
+            "en": "Thermal Energy Produced",
+            "nl": "Geproduceerde warmte-energie"
+          }
+        },
+        "measure_water": {
+          "title": {
+            "en": "Water Flow Rate",
+            "nl": "Waterdebiet"
+          },
+          "decimals": 1
+        }
+      },
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Connection Settings",
+            "nl": "Verbindingsinstellingen"
+          },
+          "children": [
+            {
+              "id": "ip",
+              "type": "text",
+              "label": {
+                "en": "IP Address",
+                "nl": "IP Adres"
+              },
+              "value": "192.168.1.100",
+              "hint": {
+                "en": "IP address of the Modbus TCP gateway (e.g. Elfin EW-11) connected to the H1/H2 port",
+                "nl": "IP adres van de Modbus TCP gateway (bijv. Elfin EW-11) aangesloten op de H1/H2 poort"
+              }
+            },
+            {
+              "id": "port",
+              "type": "number",
+              "label": {
+                "en": "Port",
+                "nl": "Poort"
+              },
+              "value": 502,
+              "min": 1,
+              "max": 65535
+            },
+            {
+              "id": "slave_id",
+              "type": "number",
+              "label": {
+                "en": "Slave ID",
+                "nl": "Slave ID"
+              },
+              "value": 1,
+              "min": 1,
+              "max": 247,
+              "hint": {
+                "en": "Modbus address matching the DIP switch setting on the hydraulic module",
+                "nl": "Modbus adres overeenkomend met de DIP switch instelling op de hydraulische module"
+              }
+            },
+            {
+              "id": "poll_interval",
+              "type": "number",
+              "label": {
+                "en": "Poll Interval (seconds)",
+                "nl": "Poll Interval (seconden)"
+              },
+              "value": 60,
+              "min": 30,
+              "max": 300,
+              "hint": {
+                "en": "Interval between Modbus polls in seconds.",
+                "nl": "Interval tussen Modbus polls in seconden."
+              }
+            },
+            {
+              "id": "connection_timeout",
+              "type": "number",
+              "label": {
+                "en": "Connection Timeout (ms)",
+                "nl": "Verbindingstimeout (ms)"
+              },
+              "hint": {
+                "en": "Timeout for Modbus read/write operations",
+                "nl": "Timeout voor Modbus lees/schrijf operaties"
+              },
+              "value": 5000,
+              "min": 1000,
+              "max": 30000
+            },
+            {
+              "id": "max_consecutive_errors",
+              "type": "number",
+              "label": {
+                "en": "Max Errors Before Unavailable",
+                "nl": "Max Fouten Voor Onbeschikbaar"
+              },
+              "hint": {
+                "en": "Number of consecutive polling errors before marking device unavailable",
+                "nl": "Aantal opeenvolgende polling fouten voordat apparaat onbeschikbaar wordt gemarkeerd"
+              },
+              "value": 3,
+              "min": 1,
+              "max": 10
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Features",
+            "nl": "Functies"
+          },
+          "children": [
+            {
+              "id": "dhw_installed",
+              "type": "checkbox",
+              "label": {
+                "en": "DHW (Domestic Hot Water) Installed",
+                "nl": "Tapwarmwater (DHW) geïnstalleerd"
+              },
+              "hint": {
+                "en": "Disable this if your setup does not have a DHW tank. This hides DHW-related controls and sensors from the device.",
+                "nl": "Schakel dit uit als uw installatie geen tapwarmwatertank heeft. Dit verbergt DHW-gerelateerde bediening en sensoren."
+              },
+              "value": true
+            },
+            {
+              "id": "backup_heater_installed",
+              "type": "checkbox",
+              "label": {
+                "en": "Backup Heater Installed",
+                "nl": "Backup verwarmer geïnstalleerd"
+              },
+              "hint": {
+                "en": "Disable this if your setup does not have a backup heater (IBH/TBH). This hides the backup heater temperature sensor.",
+                "nl": "Schakel dit uit als uw installatie geen backup verwarmer (IBH/TBH) heeft. Dit verbergt de backup verwarmer temperatuursensor."
+              },
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Heat Pump Info",
+            "nl": "Warmtepomp Info"
+          },
+          "children": [
+            {
+              "id": "appliance_type",
+              "type": "label",
+              "label": {
+                "en": "Appliance Type",
+                "nl": "Apparaat Type"
+              },
+              "value": "unknown"
+            }
+          ]
+        }
+      ],
+      "id": "kaisai-awhp"
+    }
+  ],
+  "capabilities": {
+    "compressor_status": {
+      "type": "boolean",
+      "title": {
+        "en": "Compressor",
+        "nl": "Compressor"
+      },
+      "desc": {
+        "en": "Compressor running status",
+        "nl": "Compressor draait status"
+      },
+      "icon": "/assets/compressor.svg",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Compressor running",
+        "nl": "Compressor draait"
+      },
+      "insightsTitleFalse": {
+        "en": "Compressor stopped",
+        "nl": "Compressor gestopt"
+      }
+    },
+    "defrosting_status": {
+      "type": "boolean",
+      "title": {
+        "en": "Defrost",
+        "nl": "Ontdooien"
+      },
+      "desc": {
+        "en": "Defrosting status",
+        "nl": "Ontdooi status"
+      },
+      "icon": "/assets/defrost.svg",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Defrosting active",
+        "nl": "Ontdooien actief"
+      },
+      "insightsTitleFalse": {
+        "en": "Defrosting inactive",
+        "nl": "Ontdooien inactief"
+      }
+    },
+    "dhw_enabled": {
+      "type": "boolean",
+      "title": {
+        "en": "Domestic Hot Water",
+        "nl": "Warm tapwater"
+      },
+      "desc": {
+        "en": "Enable or disable domestic hot water heating",
+        "nl": "Warm tapwater verwarming in- of uitschakelen"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "uiQuickAction": true,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "DHW enabled",
+        "nl": "Warm tapwater ingeschakeld"
+      },
+      "insightsTitleFalse": {
+        "en": "DHW disabled",
+        "nl": "Warm tapwater uitgeschakeld"
+      },
+      "options": {
+        "showTitle": true,
+        "showValue": true,
+        "label": {
+          "true": {
+            "en": "On",
+            "nl": "Aan"
+          },
+          "false": {
+            "en": "Off",
+            "nl": "Uit"
+          }
+        }
+      }
+    },
+    "dhw_heating_status": {
+      "type": "boolean",
+      "title": {
+        "en": "DHW Heating",
+        "nl": "Tapwater verwarming"
+      },
+      "desc": {
+        "en": "Domestic hot water heating status",
+        "nl": "Warm tapwater verwarmingsstatus"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "DHW heating active",
+        "nl": "Tapwater verwarming actief"
+      },
+      "insightsTitleFalse": {
+        "en": "DHW heating inactive",
+        "nl": "Tapwater verwarming inactief"
+      }
+    },
+    "error_code": {
+      "type": "number",
+      "title": {
+        "en": "Error Code",
+        "nl": "Foutcode"
+      },
+      "desc": {
+        "en": "Current error code from the heat pump (0 = no error)",
+        "nl": "Huidige foutcode van de warmtepomp (0 = geen fout)"
+      },
+      "min": 0,
+      "max": 999,
+      "decimals": 0,
+      "icon": "/assets/error_code.svg",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true
+    },
+    "measure_cop": {
+      "type": "number",
+      "title": {
+        "en": "COP",
+        "nl": "COP"
+      },
+      "desc": {
+        "en": "Coefficient of Performance (thermal output / electrical input)",
+        "nl": "Coëfficiënt van Prestatie (thermisch vermogen / elektrisch vermogen)"
+      },
+      "icon": "/assets/cop.svg",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true,
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 1,
+      "min": 0,
+      "max": 15
+    },
+    "odu_cycle": {
+      "type": "enum",
+      "title": {
+        "en": "Outdoor Unit Status",
+        "nl": "Buitenunit status"
+      },
+      "desc": {
+        "en": "What the outdoor unit is currently doing",
+        "nl": "Wat de buitenunit momenteel doet"
+      },
+      "values": [
+        {
+          "id": "standby",
+          "title": {
+            "en": "Standby",
+            "nl": "Stand-by"
+          }
+        },
+        {
+          "id": "cooling",
+          "title": {
+            "en": "Cooling",
+            "nl": "Koelen"
+          }
+        },
+        {
+          "id": "heating",
+          "title": {
+            "en": "Heating",
+            "nl": "Verwarmen"
+          }
+        }
+      ],
+      "icon": "/assets/outdoor_unit.svg",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true
+    },
+    "silent_mode": {
+      "type": "boolean",
+      "title": {
+        "en": "Silent Mode",
+        "nl": "Stille modus"
+      },
+      "desc": {
+        "en": "Enable or disable silent mode",
+        "nl": "Stille modus in- of uitschakelen"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "uiQuickAction": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Silent mode enabled",
+        "nl": "Stille modus ingeschakeld"
+      },
+      "insightsTitleFalse": {
+        "en": "Silent mode disabled",
+        "nl": "Stille modus uitgeschakeld"
+      },
+      "options": {
+        "showTitle": true,
+        "showValue": true,
+        "label": {
+          "true": {
+            "en": "Silent",
+            "nl": "Stil"
+          },
+          "false": {
+            "en": "Normal",
+            "nl": "Normaal"
+          }
+        }
+      }
+    },
+    "water_pump_status": {
+      "type": "boolean",
+      "title": {
+        "en": "Water Pump",
+        "nl": "Waterpomp"
+      },
+      "desc": {
+        "en": "Water pump running status",
+        "nl": "Waterpomp draait status"
+      },
+      "icon": "/assets/water_pump.svg",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Water pump running",
+        "nl": "Waterpomp draait"
+      },
+      "insightsTitleFalse": {
+        "en": "Water pump stopped",
+        "nl": "Waterpomp gestopt"
+      }
+    }
+  }
+}

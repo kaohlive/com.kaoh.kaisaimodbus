@@ -1,0 +1,74 @@
+
+    <h1>Kaisai AWHP Connection</h1>
+    <p>Enter the connection details of your Modbus TCP gateway connected to the Kaisai hydraulic module's H1/H2 port.</p>
+
+    <fieldset>
+        <legend>Gateway Settings</legend>
+
+        <div class="field row">
+            <label for="ip">IP Address</label>
+            <input id="ip" type="text" value="192.168.1.100" placeholder="192.168.1.100" />
+        </div>
+        <div class="field row">
+            <label for="port">Port</label>
+            <input id="port" type="number" value="502" min="1" max="65535" />
+        </div>
+        <div class="field row">
+            <label for="slave_id">Slave ID</label>
+            <input id="slave_id" type="number" value="1" min="1" max="247" />
+        </div>
+    </fieldset>
+
+    <button id="test_btn" class="right">Test & Add</button>
+
+    <script type="text/javascript">
+        var ipElement = document.getElementById('ip');
+        var portElement = document.getElementById('port');
+        var slaveIdElement = document.getElementById('slave_id');
+        var testBtn = document.getElementById('test_btn');
+
+        testBtn.addEventListener('click', function(e) {
+            var ip = ipElement.value.trim();
+            var port = parseInt(portElement.value) || 502;
+            var slaveId = parseInt(slaveIdElement.value) || 1;
+
+            if (!ip) {
+                Homey.alert('Please enter an IP address.');
+                return;
+            }
+
+            Homey.showLoadingOverlay();
+            Homey.emit('test_connection', { ip: ip, port: port, slave_id: slaveId })
+                .then(function(result) {
+                    Homey.hideLoadingOverlay();
+                    if (result.success) {
+                        Homey.createDevice({
+                            name: 'Kaisai Air to Water Heat Pump',
+                            data: {
+                                id: 'kaisai_awhp_' + Date.now().toString(36)
+                            },
+                            settings: {
+                                ip: ip,
+                                port: port,
+                                slave_id: slaveId,
+                                poll_interval: 60
+                            }
+                        })
+                        .then(function() {
+                            Homey.done();
+                        })
+                        .catch(function(err) {
+                            Homey.alert('Error adding device: ' + err.message);
+                        });
+                    } else {
+                        Homey.alert('Connection failed: ' + result.message);
+                    }
+                })
+                .catch(function(err) {
+                    Homey.hideLoadingOverlay();
+                    Homey.alert('Connection test failed: ' + (err.message || err));
+                });
+        });
+    </script>
+
+</body>

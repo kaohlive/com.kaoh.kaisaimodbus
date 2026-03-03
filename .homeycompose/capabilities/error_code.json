@@ -1,0 +1,19 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Error Code",
+    "nl": "Foutcode"
+  },
+  "desc": {
+    "en": "Current error code from the heat pump (0 = no error)",
+    "nl": "Huidige foutcode van de warmtepomp (0 = geen fout)"
+  },
+  "min": 0,
+  "max": 999,
+  "decimals": 0,
+  "icon": "/assets/error_code.svg",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true
+}

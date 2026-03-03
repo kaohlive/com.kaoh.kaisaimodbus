@@ -1,0 +1,23 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "DHW Heating",
+    "nl": "Tapwater verwarming"
+  },
+  "desc": {
+    "en": "Domestic hot water heating status",
+    "nl": "Warm tapwater verwarmingsstatus"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "insightsTitleTrue": {
+    "en": "DHW heating active",
+    "nl": "Tapwater verwarming actief"
+  },
+  "insightsTitleFalse": {
+    "en": "DHW heating inactive",
+    "nl": "Tapwater verwarming inactief"
+  }
+}

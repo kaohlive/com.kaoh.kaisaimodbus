@@ -1,0 +1,266 @@
+{
+  "triggers": [
+    {
+      "id": "odu_cycle_changed",
+      "title": {
+        "en": "Outdoor unit status changed",
+        "nl": "Buitenunit status veranderd"
+      },
+      "tokens": [
+        {
+          "name": "cycle",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "id": "error_detected",
+      "title": {
+        "en": "Error detected",
+        "nl": "Fout gedetecteerd"
+      },
+      "tokens": [
+        {
+          "name": "error_code",
+          "type": "number",
+          "title": {
+            "en": "Error Code",
+            "nl": "Foutcode"
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "id": "error_cleared",
+      "title": {
+        "en": "Error cleared",
+        "nl": "Fout opgelost"
+      },
+      "args": []
+    },
+    {
+      "id": "defrosting_started",
+      "title": {
+        "en": "Defrosting started",
+        "nl": "Ontdooien gestart"
+      },
+      "args": []
+    },
+    {
+      "id": "defrosting_stopped",
+      "title": {
+        "en": "Defrosting stopped",
+        "nl": "Ontdooien gestopt"
+      },
+      "args": []
+    },
+    {
+      "id": "compressor_started",
+      "title": {
+        "en": "Compressor started",
+        "nl": "Compressor gestart"
+      },
+      "args": []
+    },
+    {
+      "id": "compressor_stopped",
+      "title": {
+        "en": "Compressor stopped",
+        "nl": "Compressor gestopt"
+      },
+      "args": []
+    },
+    {
+      "id": "dhw_heating_started",
+      "title": {
+        "en": "DHW heating started",
+        "nl": "Tapwater verwarming gestart"
+      },
+      "args": []
+    },
+    {
+      "id": "dhw_heating_stopped",
+      "title": {
+        "en": "DHW heating stopped",
+        "nl": "Tapwater verwarming gestopt"
+      },
+      "args": []
+    }
+  ],
+  "conditions": [
+    {
+      "id": "odu_cycle_is",
+      "title": {
+        "en": "Outdoor unit status is",
+        "nl": "Buitenunit status is"
+      },
+      "titleFormatted": {
+        "en": "Outdoor unit status !{{is|is not}} [[cycle]]",
+        "nl": "Buitenunit status !{{is|is niet}} [[cycle]]"
+      },
+      "args": [
+        {
+          "name": "cycle",
+          "type": "dropdown",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          },
+          "values": [
+            { "id": "standby", "label": { "en": "Standby", "nl": "Stand-by" } },
+            { "id": "cooling", "label": { "en": "Cooling", "nl": "Koelen" } },
+            { "id": "heating", "label": { "en": "Heating", "nl": "Verwarmen" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "is_heating",
+      "title": {
+        "en": "Heat pump is heating",
+        "nl": "Warmtepomp is aan het verwarmen"
+      },
+      "titleFormatted": {
+        "en": "Heat pump !{{is|is not}} heating",
+        "nl": "Warmtepomp !{{is|is niet}} aan het verwarmen"
+      },
+      "args": []
+    },
+    {
+      "id": "is_cooling",
+      "title": {
+        "en": "Heat pump is cooling",
+        "nl": "Warmtepomp is aan het koelen"
+      },
+      "titleFormatted": {
+        "en": "Heat pump !{{is|is not}} cooling",
+        "nl": "Warmtepomp !{{is|is niet}} aan het koelen"
+      },
+      "args": []
+    },
+    {
+      "id": "is_defrosting",
+      "title": {
+        "en": "Heat pump is defrosting",
+        "nl": "Warmtepomp is aan het ontdooien"
+      },
+      "titleFormatted": {
+        "en": "Heat pump !{{is|is not}} defrosting",
+        "nl": "Warmtepomp !{{is|is niet}} aan het ontdooien"
+      },
+      "args": []
+    },
+    {
+      "id": "compressor_is_on",
+      "title": {
+        "en": "Compressor is running",
+        "nl": "Compressor draait"
+      },
+      "titleFormatted": {
+        "en": "Compressor !{{is|is not}} running",
+        "nl": "Compressor !{{draait|draait niet}}"
+      },
+      "args": []
+    },
+    {
+      "id": "dhw_is_active",
+      "title": {
+        "en": "DHW heating is active",
+        "nl": "Tapwater verwarming is actief"
+      },
+      "titleFormatted": {
+        "en": "DHW heating !{{is|is not}} active",
+        "nl": "Tapwater verwarming !{{is|is niet}} actief"
+      },
+      "args": []
+    },
+    {
+      "id": "temperature_above",
+      "title": {
+        "en": "Water outlet temperature is above",
+        "nl": "Wateruitlaat temperatuur is boven"
+      },
+      "titleFormatted": {
+        "en": "Water outlet temperature !{{is above|is not above}} [[temperature]]\u00b0C",
+        "nl": "Wateruitlaat temperatuur !{{is boven|is niet boven}} [[temperature]]\u00b0C"
+      },
+      "args": [
+        {
+          "name": "temperature",
+          "type": "number",
+          "min": 5,
+          "max": 75,
+          "step": 0.5,
+          "title": {
+            "en": "Temperature (\u00b0C)",
+            "nl": "Temperatuur (\u00b0C)"
+          }
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "set_dhw_target_temperature",
+      "title": {
+        "en": "Set DHW target temperature",
+        "nl": "Tapwater streeftemperatuur instellen"
+      },
+      "titleFormatted": {
+        "en": "Set DHW target temperature to [[temperature]]\u00b0C",
+        "nl": "Tapwater streeftemperatuur instellen op [[temperature]]\u00b0C"
+      },
+      "args": [
+        {
+          "name": "temperature",
+          "type": "range",
+          "title": {
+            "en": "Temperature (\u00b0C)",
+            "nl": "Temperatuur (\u00b0C)"
+          },
+          "min": 20,
+          "max": 75,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "enable_dhw",
+      "title": {
+        "en": "Enable DHW",
+        "nl": "Warm tapwater inschakelen"
+      },
+      "args": []
+    },
+    {
+      "id": "disable_dhw",
+      "title": {
+        "en": "Disable DHW",
+        "nl": "Warm tapwater uitschakelen"
+      },
+      "args": []
+    },
+    {
+      "id": "enable_silent_mode",
+      "title": {
+        "en": "Enable silent mode",
+        "nl": "Stille modus inschakelen"
+      },
+      "args": []
+    },
+    {
+      "id": "disable_silent_mode",
+      "title": {
+        "en": "Disable silent mode",
+        "nl": "Stille modus uitschakelen"
+      },
+      "args": []
+    }
+  ]
+}

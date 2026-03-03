@@ -1,0 +1,24 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Compressor",
+    "nl": "Compressor"
+  },
+  "desc": {
+    "en": "Compressor running status",
+    "nl": "Compressor draait status"
+  },
+  "icon": "/assets/compressor.svg",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "insightsTitleTrue": {
+    "en": "Compressor running",
+    "nl": "Compressor draait"
+  },
+  "insightsTitleFalse": {
+    "en": "Compressor stopped",
+    "nl": "Compressor gestopt"
+  }
+}
