@@ -1,6 +1,6 @@
 {
   "id": "com.kaoh.kaisaimodbus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "platforms": [
@@ -23,6 +23,7 @@
     "xlarge": "/assets/images/xlarge.png"
   },
   "source": "https://github.com/kaohlive/com.kaoh.kaisaimodbus",
+  "homeyCommunityTopicId": 153121,
   "bugs": {
     "url": "https://github.com/kaohlive/com.kaoh.kaisaimodbus/issues"
   },
