@@ -455,9 +455,8 @@ class KaisaiAWHPDevice extends Homey.Device {
       // Register 118: Outdoor unit current (A)
       const current = getUint16(118);
 
-      // Register 119: Outdoor unit voltage (V) — actual value / 10
-      const voltageRaw = getUint16(119);
-      const voltage = voltageRaw / 10;
+      // Register 119: Outdoor unit voltage (V) — direct value
+      const voltage = getUint16(119);
 
       // Calculate instantaneous electrical power (W)
       const electricalPower = Math.round(voltage * current);
@@ -536,11 +535,9 @@ class KaisaiAWHPDevice extends Homey.Device {
         }
       }
 
-      // Register 138: Water flow (actual value * 100, unit m³/H)
-      // Convert m³/H to L/min: m³/H * 1000/60 = L/min * 16.667
+      // Register 138: Water flow — raw value / 60 = L/min
       const waterFlowRaw = getUint16(138);
-      const waterFlowM3H = waterFlowRaw / 100;
-      const waterFlowLMin = Math.round(waterFlowM3H * 16.667 * 10) / 10;
+      const waterFlowLMin = Math.round(waterFlowRaw / 60 * 10) / 10;
       this.setCapabilityValue('measure_water', waterFlowLMin).catch(this.error);
 
       // Registers 143-144: Electricity consumption (32-bit high+low) → meter_power (kWh)
@@ -588,6 +585,12 @@ class KaisaiAWHPDevice extends Homey.Device {
   setupCapabilityListeners() {
     // onoff → Register 0, BIT0 (AC zone1) + BIT1 (floor heating zone1)
     this.registerCapabilityListener('onoff', async (value) => {
+      if (!value && this.getSetting('always_on')) {
+        this.log('Always On is enabled, ignoring turn off request');
+        // Revert the UI toggle back to on
+        await this.setCapabilityValue('onoff', true);
+        throw new Error('Always On is enabled — the heat pump cannot be turned off from Homey. Disable this in Advanced Settings.');
+      }
       await this.writeBitfield(0, 0x03, value ? 0x03 : 0x00);
       this.log(`Heating/Cooling set to: ${value}`);
     });

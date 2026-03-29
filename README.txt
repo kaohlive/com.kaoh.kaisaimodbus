@@ -20,4 +20,5 @@ Requirements:
 
 Support & feedback:
 
+- Community forum: https://community.homey.app/t/153121
 - GitHub: https://github.com/kaohlive/com.kaoh.kaisaimodbus

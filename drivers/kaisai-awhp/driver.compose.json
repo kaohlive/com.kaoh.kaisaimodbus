@@ -281,6 +281,19 @@
             "nl": "Schakel dit uit als uw installatie geen backup verwarmer (IBH/TBH) heeft. Dit verbergt de backup verwarmer temperatuursensor."
           },
           "value": true
+        },
+        {
+          "id": "always_on",
+          "type": "checkbox",
+          "label": {
+            "en": "Always On (prevent accidental shutdown)",
+            "nl": "Altijd aan (voorkom onbedoeld uitschakelen)"
+          },
+          "hint": {
+            "en": "When enabled, the heat pump cannot be turned off from Homey. This prevents accidental shutdown via the UI or flows.",
+            "nl": "Wanneer ingeschakeld kan de warmtepomp niet worden uitgeschakeld vanuit Homey. Dit voorkomt onbedoeld uitschakelen via de UI of flows."
+          },
+          "value": false
         }
       ]
     },
