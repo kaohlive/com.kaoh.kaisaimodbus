@@ -303,10 +303,10 @@
             "nl": "Extra vermogen correctie (W)"
           },
           "hint": {
-            "en": "The Modbus registers only report outdoor unit power. Add a fixed offset (in Watts) to compensate for the water pump, control panel, and other auxiliary consumption not reported by Modbus.",
-            "nl": "De Modbus registers rapporteren alleen het vermogen van de buitenunit. Voeg een vaste correctie (in Watt) toe ter compensatie van de waterpomp, bedieningspaneel en ander hulpverbruik dat niet via Modbus wordt gerapporteerd."
+            "en": "The Modbus registers only report outdoor unit (compressor) power. This offset compensates for the water pump, control panel, and other auxiliary consumption not reported by Modbus. The default of 200W is an approximation — for accurate readings, install a dedicated power meter. Note: Electrical Power and COP values are estimates.",
+            "nl": "De Modbus registers rapporteren alleen het vermogen van de buitenunit (compressor). Deze correctie compenseert voor de waterpomp, bedieningspaneel en ander hulpverbruik dat niet via Modbus wordt gerapporteerd. De standaardwaarde van 200W is een benadering — voor nauwkeurige metingen, installeer een aparte energiemeter. Let op: Elektrisch vermogen en COP waarden zijn schattingen."
           },
-          "value": 0,
+          "value": 200,
           "min": 0,
           "max": 500,
           "step": 10

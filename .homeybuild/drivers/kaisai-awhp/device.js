@@ -35,6 +35,12 @@ class KaisaiAWHPDevice extends Homey.Device {
     // Setup Modbus event handlers
     this.setupModbusHandlers();
 
+    // Migrate settings defaults for existing devices
+    if (this.getSetting('power_offset') === null || this.getSetting('power_offset') === undefined) {
+      await this.setSettings({ power_offset: 200 });
+      this.log('Migrated power_offset setting to default 200W');
+    }
+
     // Fix missing capabilities
     await this.repairCapabilities();
 
@@ -460,7 +466,8 @@ class KaisaiAWHPDevice extends Homey.Device {
 
       // Calculate instantaneous electrical power (W)
       // Registers only report outdoor unit power; add configurable offset for auxiliary consumption
-      const powerOffset = this.getSetting('power_offset') || 0;
+      // Offset only applies when compressor is running (idle draw is minimal ~20W)
+      const powerOffset = compressorOn ? (this.getSetting('power_offset') || 0) : 0;
       const electricalPower = Math.round(voltage * current) + powerOffset;
       this.setCapabilityValue('measure_power', electricalPower).catch(this.error);
 
